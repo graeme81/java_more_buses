@@ -6,6 +6,7 @@ public class BusTest{
   Bus bus;
   Person traveller;
   BusStop wait;
+  Alien commuter;
 
   @Before
   public void before(){
@@ -26,10 +27,27 @@ public class BusTest{
     assertEquals(1, bus.passengerCount());
   }
 
+  @Test  // alien boards bus
+  public void alienBoards(){
+    bus.pickUp(commuter);
+
+    assertEquals(1, bus.passengerCount());
+  }
+
   @Test // passenger leaves the bus
   public void passengerLeaves(){
     bus.pickUp(traveller);
     bus.pickUp(traveller);
+
+    bus.dropOff();
+
+    assertEquals(1, bus.passengerCount());
+  }
+
+  @Test // passenger leaves the bus
+  public void alienLeaves(){
+    bus.pickUp(commuter);
+    bus.pickUp(commuter);
 
     bus.dropOff();
 
